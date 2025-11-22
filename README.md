@@ -26,19 +26,20 @@ Ejecutar Proyectos
 python "Nombre del Archivo".py
 ```
 ### Estructura del Proyecto
+
 ```
 ├── data
 │   ├── beisbol.csv
-│   ├── breast_cancer.csv
+│   ├── breast-cancer.csv
 │   ├── comprar_alquilar.csv
 │   └── samsung.csv
 │
-├── beisbol.py
-├── breast_cancer.py
-├── comprar_alquilar.py
-├── samsung.py
+├── caso_1.py
+├── caso_2.py
+├── caso_3.py
+├── caso_4.py
 │
 ├── requirements.txt
-├── .gitignore
+├── requirements.txt
 └── README.md
 ```
