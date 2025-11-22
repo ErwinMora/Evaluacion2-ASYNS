@@ -3,7 +3,8 @@ import numpy as np # Librería para los calculos numéricos
 import matplotlib.pyplot as plt # Librería para graficar
 import seaborn as sns # Libreria para realizar las gráficas con estilo 
 from sklearn.model_selection import train_test_split # Libreria de Sklearn para dividir los datos en test y tranin
-from sklearn.linear_model import LinearRegression # Modelo de Regresión Linela
+from sklearn.linear_model import LinearRegression # Modelo de Regresión Lineal
+from sklearn.model_selection import GridSearchCV # Librería para la busqueda de hiperparpárametros
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score # Métricas para evaluar el modelo
 from sklearn.preprocessing import StandardScaler # Librería para escalar los datos
 
@@ -66,6 +67,25 @@ print(f"RMSE = {rmse2:.4f} | R² = {r22:.4f}") # Resultados de segundo modelo ya
 
 mejor = "2do Modelo" if r22 > r2 else "1er Modelo"
 print(f"\nEl mejor modelo es: {mejor}") # Comparación de ambos modelos y el mejor
+
+print("\nHiperparámetros")
+# Definimos los hiperparámetros que queremos probar en el modelo LinearRegression
+parametros = {
+    "fit_intercept": [True, False], # Probar con y sin término independiente
+    "positive": [True, False] # Probar si forzamos coeficientes positivos o no
+}
+
+# Configuramos GridSearchCV para buscar la mejor combinación de hiperparámetros
+grid = GridSearchCV(
+    estimator=LinearRegression(), # Modelo base
+    param_grid=parametros, # Diccionario con hiperparámetros a evaluar
+    scoring='neg_mean_squared_error', # Métrica para evaluar cada combinación
+    cv=5 # Validación cruzada con 5 particiones
+)
+
+grid.fit(X_train_scaled, y_train) # Entrenamos la búsqueda usando los datos escalados
+print("\nMejores parámetros encontrados:", grid.best_params_)
+
 
 # Gráfica — Dispersión de datos
 plt.figure(figsize=(7,5)) # Tamaño de la figura de la gráfica
