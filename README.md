@@ -40,6 +40,6 @@ python "Nombre del Archivo".py
 ├── caso_4.py
 │
 ├── requirements.txt
-├── requirements.txt
+├── .gitignore
 └── README.md
 ```
